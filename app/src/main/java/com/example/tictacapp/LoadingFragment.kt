@@ -6,10 +6,13 @@ import android.net.NetworkInfo
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.facebook.FacebookSdk
+import com.facebook.applinks.AppLinkData
 
 
 class LoadingFragment : Fragment(R.layout.fragment_loading) {
@@ -22,10 +25,6 @@ class LoadingFragment : Fragment(R.layout.fragment_loading) {
             Thread {
                 val response = Network.getCustomSiteCall().execute()
                 responseCode = response.code
-                if (responseCode!=404) {
-                    openChrome("https://scnddmn.com/7vZTBtvQ?sub1=google")
-                }
-
             }.start()
         }
 
@@ -34,15 +33,13 @@ class LoadingFragment : Fragment(R.layout.fragment_loading) {
             if ((responseCode==404)||(!isNetworkAvailable())) {
                 findNavController().navigate(R.id.action_loadingFragment_to_startFragment)
             }
+            else{
+                findNavController().navigate(R.id.action_loadingFragment_to_webFragment)
+            }
         }, 2000)
 
-    }
 
-    private fun openChrome(url:String){
-        val builder = CustomTabsIntent.Builder()
-        builder.setToolbarColor(resources.getColor(R.color.colorButton, null))
-        val intent = builder.build()
-        intent.launchUrl(requireContext(), Uri.parse(url))
+
     }
 
     private fun isNetworkAvailable(): Boolean {

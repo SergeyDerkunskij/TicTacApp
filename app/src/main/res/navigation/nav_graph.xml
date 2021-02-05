@@ -55,5 +55,12 @@
         <action
             android:id="@+id/action_loadingFragment_to_startFragment"
             app:destination="@id/startFragment" />
+        <action
+            android:id="@+id/action_loadingFragment_to_webFragment"
+            app:destination="@id/webFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/webFragment"
+        android:name="com.example.tictacapp.WebFragment"
+        android:label="WebFragment" />
 </navigation>

@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">TicTacApp</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="two_player">Two player</string>
+    <string name="reset_button_text">Reset</string>
+    <string name="single_player_button">Single Player</string>
+</resources>
